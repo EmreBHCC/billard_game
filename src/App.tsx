@@ -86,7 +86,7 @@ export default function App() {
 
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full py-1 w-full max-w-[60%] md:max-w-[50%]">
           <img 
-            src="/klas-logo.jpg" 
+            src="/klas-logo.svg" 
             alt="Klas Bilardo" 
             className="h-full w-auto max-h-full object-contain"
             onError={(e) => {

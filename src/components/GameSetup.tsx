@@ -47,7 +47,7 @@ export function GameSetup({ onStartGame }: GameSetupProps) {
         {/* Logo */}
         <div className="flex justify-center transform scale-125 mb-4">
           <img 
-            src="/klas-logo.jpg" 
+            src="/klas-logo.svg" 
             alt="Klas Bilardo" 
             className="h-20 object-contain"
             onError={(e) => {
