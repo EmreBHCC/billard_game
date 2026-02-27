@@ -1,0 +1,5 @@
+{
+  "name": "Billiards Scoreboard",
+  "description": "A responsive scoreboard for 3 or 4 player billiards games with large, high-visibility scores.",
+  "requestFramePermissions": []
+}
