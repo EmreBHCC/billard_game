@@ -1,6 +1,5 @@
 import { Users, User, Play, RefreshCcw } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { KlasLogo } from './KlasLogo';
 
 interface GameSetupProps {
   onStartGame: (players: { name: string; score: number }[]) => void;
@@ -47,7 +46,15 @@ export function GameSetup({ onStartGame }: GameSetupProps) {
       <div className="w-full max-w-lg space-y-6 py-8">
         {/* Logo */}
         <div className="flex justify-center transform scale-125 mb-4">
-          <KlasLogo className="h-20" />
+          <img 
+            src="/klas-logo.jpg" 
+            alt="Klas Bilardo" 
+            className="h-20 object-contain"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.parentElement!.innerHTML = '<span class="text-3xl font-black italic tracking-tighter text-white">KLAS<span class="text-red-600">BİLARDO</span></span>';
+            }}
+          />
         </div>
 
         {/* Player Count Selection */}

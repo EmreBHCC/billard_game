@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { GameSetup } from './components/GameSetup';
 import { PlayerSection } from './components/PlayerSection';
 import { RotateCcw, Settings, X, Home, Check } from 'lucide-react';
-import { KlasLogo } from './components/KlasLogo';
 
 interface Player {
   id: number;
@@ -86,7 +85,15 @@ export default function App() {
         </button>
 
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full py-1 w-full max-w-[60%] md:max-w-[50%]">
-          <KlasLogo className="h-full w-auto max-h-full object-contain" />
+          <img 
+            src="/klas-logo.jpg" 
+            alt="Klas Bilardo" 
+            className="h-full w-auto max-h-full object-contain"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.parentElement!.innerHTML = '<span class="text-3xl font-black italic tracking-tighter text-white">KLAS<span class="text-red-600">BİLARDO</span></span>';
+            }}
+          />
         </div>
         
         {/* Settings Button */}
