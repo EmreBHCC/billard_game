@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { GameSetup } from './components/GameSetup';
 import { PlayerSection } from './components/PlayerSection';
 import { RotateCcw, Settings, X, Home, Check } from 'lucide-react';
+import klasLogo from './assets/klas-logo.svg';
 
 interface Player {
   id: number;
@@ -75,23 +76,23 @@ export default function App() {
   return (
     <div className="relative h-screen w-full bg-black overflow-hidden flex flex-col">
       {/* Header with Logo */}
-      <div className="h-24 md:h-32 flex items-center justify-between px-6 bg-zinc-950 border-b border-zinc-800 z-20 shrink-0 relative shadow-2xl">
+      <div className="h-16 md:h-24 flex items-center justify-between px-4 md:px-6 bg-zinc-950 border-b border-zinc-800 z-20 shrink-0 relative shadow-2xl">
         {/* Home Button */}
         <button
           onClick={() => setConfirmAction({ type: 'exit', message: 'Ana sayfaya dönmek istiyor musunuz?' })}
-          className="p-3 text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-zinc-900"
+          className="p-2 md:p-3 text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-zinc-900"
         >
-          <Home size={28} />
+          <Home className="w-6 h-6 md:w-7 md:h-7" />
         </button>
 
-        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full py-1 w-full max-w-[60%] md:max-w-[50%]">
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full py-2 w-full max-w-[55%] md:max-w-[50%]">
           <img 
-            src="/klas-logo.svg" 
+            src={klasLogo} 
             alt="Klas Bilardo" 
             className="h-full w-auto max-h-full object-contain"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement!.innerHTML = '<span class="text-3xl font-black italic tracking-tighter text-white">KLAS<span class="text-red-600">BİLARDO</span></span>';
+              e.currentTarget.parentElement!.innerHTML = '<span class="text-2xl md:text-3xl font-black italic tracking-tighter text-white">KLAS<span class="text-red-600">BİLARDO</span></span>';
             }}
           />
         </div>
@@ -99,9 +100,9 @@ export default function App() {
         {/* Settings Button */}
         <button
           onClick={() => setShowSettings(!showSettings)}
-          className={`p-3 transition-colors rounded-full hover:bg-zinc-900 ${showSettings ? 'text-white bg-zinc-900' : 'text-zinc-400 hover:text-white'}`}
+          className={`p-2 md:p-3 transition-colors rounded-full hover:bg-zinc-900 ${showSettings ? 'text-white bg-zinc-900' : 'text-zinc-400 hover:text-white'}`}
         >
-          <Settings size={28} />
+          <Settings className="w-6 h-6 md:w-7 md:h-7" />
         </button>
       </div>
 
@@ -159,21 +160,23 @@ export default function App() {
         </>
       )}
 
-      {/* Game Grid */}
-      <div className={`flex-1 grid gap-1 p-1 min-h-0 w-full z-10 ${
-        gameMode === 3 
-          ? 'grid-rows-3 md:grid-rows-1 md:grid-cols-3' 
-          : 'grid-rows-4 md:grid-rows-2 md:grid-cols-2'
-      }`}>
-        {players.map(player => (
-          <div key={player.id} className="relative w-full h-full min-h-0 p-1">
-            <PlayerSection
-              {...player}
-              onUpdateScore={updateScore}
-              onUpdateName={updateName}
-            />
-          </div>
-        ))}
+      {/* Game Grid Container */}
+      <div className="flex-1 w-full z-10 overflow-y-auto overflow-x-hidden min-h-0">
+        <div className={`grid gap-1 p-1 min-h-full ${
+          gameMode === 3 
+            ? 'grid-rows-[repeat(3,minmax(240px,1fr))] md:grid-rows-[minmax(240px,1fr)] md:grid-cols-3' 
+            : 'grid-cols-2 grid-rows-[repeat(2,minmax(240px,1fr))]'
+        }`}>
+          {players.map(player => (
+            <div key={player.id} className="relative w-full h-full p-1 min-h-[240px]">
+              <PlayerSection
+                {...player}
+                onUpdateScore={updateScore}
+                onUpdateName={updateName}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

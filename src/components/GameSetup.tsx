@@ -1,5 +1,6 @@
 import { Users, User, Play, RefreshCcw } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import klasLogo from '../assets/klas-logo.svg';
 
 interface GameSetupProps {
   onStartGame: (players: { name: string; score: number }[]) => void;
@@ -42,17 +43,17 @@ export function GameSetup({ onStartGame }: GameSetupProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4 text-center text-white overflow-y-auto">
-      <div className="w-full max-w-lg space-y-6 py-8">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-3 md:p-4 text-center text-white overflow-y-auto">
+      <div className="w-full max-w-lg space-y-4 md:space-y-6 py-6 md:py-8">
         {/* Logo */}
-        <div className="flex justify-center transform scale-125 mb-4">
+        <div className="flex justify-center transform scale-100 md:scale-125 mb-2 md:mb-4">
           <img 
-            src="/klas-logo.svg" 
+            src={klasLogo} 
             alt="Klas Bilardo" 
-            className="h-20 object-contain"
+            className="h-16 md:h-20 object-contain"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement!.innerHTML = '<span class="text-3xl font-black italic tracking-tighter text-white">KLAS<span class="text-red-600">BİLARDO</span></span>';
+              e.currentTarget.parentElement!.innerHTML = '<span class="text-2xl md:text-3xl font-black italic tracking-tighter text-white">KLAS<span class="text-red-600">BİLARDO</span></span>';
             }}
           />
         </div>
@@ -126,9 +127,9 @@ export function GameSetup({ onStartGame }: GameSetupProps) {
         {/* Start Button */}
         <button
           onClick={handleStart}
-          className="w-full py-5 bg-white text-black text-xl font-black uppercase tracking-widest rounded-2xl hover:bg-zinc-200 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-xl flex items-center justify-center gap-3"
+          className="w-full py-4 md:py-5 bg-white text-black text-lg md:text-xl font-black uppercase tracking-widest rounded-2xl hover:bg-zinc-200 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-xl flex items-center justify-center gap-2 md:gap-3"
         >
-          <Play fill="currentColor" />
+          <Play fill="currentColor" className="w-5 h-5 md:w-6 md:h-6" />
           Oyunu Başlat
         </button>
       </div>
